@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 @Controller
@@ -55,5 +57,21 @@ public class ProductControllermvc {
                 .build();
         refModel.addAttribute("product1",refproductdto);
         return "data4page_sendDataProduct";
+    }
+
+    //http://localhost:8080/root/data5
+    @GetMapping("data5")
+    public String mvc5(Model refModel){
+        List<ProductDto> refproductdtolist = new ArrayList<>();
+        for (int i = 1; i <=5 ; i++) {
+            refproductdtolist.add(ProductDto
+                    .builder()
+                    .id(21L)
+                    .name("SSD" + i)
+                    .price("400" + i)
+                    .build());
+        }
+        refModel.addAttribute("product2",refproductdtolist);
+        return "data5page_sendDataProductList";
     }
 }
