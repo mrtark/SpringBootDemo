@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -73,5 +74,22 @@ public class ProductControllermvc {
         }
         refModel.addAttribute("product2",refproductdtolist);
         return "data5page_sendDataProductList";
+    }
+
+    //http://localhost:8080/root/data6/id
+    @GetMapping({"data6","data6/{id}"})
+    public String mvc6(@PathVariable(value = "id", required = false) Long id, Model refModel){
+        if (id!=null){
+            ProductDto refproductdto = ProductDto
+                    .builder()
+                    .id(id)
+                    .name("Graphic card")
+                    .price("4.000")
+                    .build();
+            refModel.addAttribute("product2_id",refproductdto);
+        }else {
+            refModel.addAttribute("product2_id","no id information or null!!");
+        }
+        return "data6page_sendDataProductList_id";
     }
 }
