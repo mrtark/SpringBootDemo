@@ -4,10 +4,7 @@ import com.example.springboot.springboot.business.dto.ProductDto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,5 +88,23 @@ public class ProductControllermvc {
             refModel.addAttribute("product2_id","no id information or null!!");
         }
         return "data6page_sendDataProductList_id";
+    }
+
+    //http://localhost:8080/root/data7
+    //http://localhost:8080/root/data7?id=45
+    @GetMapping("data7")
+    public String mvc7(@RequestParam(value = "id", required = false) Long id, Model refModel){
+        if (id!=null){
+            ProductDto refproductdto = ProductDto
+                    .builder()
+                    .id(id)
+                    .name("Graphic card")
+                    .price("4.000")
+                    .build();
+            refModel.addAttribute("product3_id",refproductdto);
+        }else {
+            refModel.addAttribute("product3_id","no id information or null!!");
+        }
+        return "data7page_sendDataProductList_id_requestparam";
     }
 }
