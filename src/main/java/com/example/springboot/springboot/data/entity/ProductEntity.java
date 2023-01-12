@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -18,7 +19,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "product_ü")
-public class ProductEntity {
+public class ProductEntity implements Serializable {
+    public static final Long serialVersionUID=1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", updatable = false,insertable = true,nullable = false,unique = true)
