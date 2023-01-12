@@ -31,4 +31,8 @@ public class ProductEntity {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+
+    //persistent field
+    @Transient
+    private String justJavaDataSpecial;
 }
