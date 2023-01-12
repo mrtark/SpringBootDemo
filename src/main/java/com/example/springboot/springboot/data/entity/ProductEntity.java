@@ -27,12 +27,14 @@ public class ProductEntity {
     private String name;
     @Column(name = "product_price")
     private String price;
-    @Column(name = "created_date")
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
 
     //persistent field
     @Transient
     private String justJavaDataSpecial;
+    @Lob
+    private String bigData;
+    @Column(name = "created_date")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
 }
