@@ -23,7 +23,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", updatable = false,insertable = true,nullable = false,unique = true)
     private Long id;
-    @Column(name = "product_name", length = 100)
+    @Column(name = "product_name", length = 100, columnDefinition = "varchar(255) 'You did not enter the product name!'")
     private String name;
     @Column(name = "product_price")
     private String price;
