@@ -32,5 +32,9 @@ public class ProductEntity extends BaseEntity implements Serializable {
     private String justJavaDataSpecial;
     @Lob
     private String bigData;
+    @Column(name = "product_codes")
+    private String codes;
+    @Column(name = "product_emailAddres")
+    private String emailAddres;
 
 }
