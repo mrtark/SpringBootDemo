@@ -17,27 +17,20 @@ import java.util.Date;
 @Builder
 @Log4j2
 
+//@RequiredArgsConstructer - //for inject
+
 @Entity
 @Table(name = "product_ü")
-public class ProductEntity implements Serializable {
+public class ProductEntity extends BaseEntity implements Serializable {
     public static final Long serialVersionUID=1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", updatable = false,insertable = true,nullable = false,unique = true)
-    private Long id;
     @Column(name = "product_name", length = 100, columnDefinition = "varchar(255) 'You did not enter the product name!'")
     private String name;
     @Column(name = "product_price")
     private String price;
-
     //persistent field
     @Transient
     private String justJavaDataSpecial;
     @Lob
     private String bigData;
-    @Column(name = "created_date")
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+
 }
