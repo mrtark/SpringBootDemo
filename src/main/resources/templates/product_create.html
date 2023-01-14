@@ -1,0 +1,106 @@
+<!doctype html>
+<html  th:lang="${#locale.language}"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>product_create</title>
+
+    <!-- Turkce karakter -->
+    <meta charset="utf-8">
+
+    <!-- responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- seo -->
+    <meta name="keywords" content="html5,css3,js,jquery,bootstrap,react,javase" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- font awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+    <!-- jquery  -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- react libraries -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <link rel="stylesheet"   th:href="@{/css/index.css}">
+    <script th:src="@{/js/index.js}"></script>
+</head>
+
+<body class="container">
+
+    <!-- start codes -->
+    <h1 class="text-secondary contain">data6page_sendDataProductList_id</h1>
+
+    <nav class="navbar navbar-expand-sm navbar-light shadow">
+        <div class="container">
+            <a class="navbar-brand text-dark" href="#"><i class="fa-solid fa-house"></i></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark bg-light rounded-3" href="/index.html"
+                           aria-current="page">Anasayfa <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " href="/blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Kategoriler</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item " href="#">Teknoloji</a>
+                            <a class="dropdown-item" href="#">Sanat</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark " href="/iletisim.html">İletişim</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mt-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Kullanıcı İşlemleri</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="/admin_panel.html">Admin Panel</a>
+                            <a class="dropdown-item" href="/user_page.html">User Panel</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex my-2 my-lg-0">
+                    <input class="form-control me-sm-2" type="text" placeholder="Arama">
+                    <button class="btn my-2 my-sm-0 btn-arama" type="submit"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card w-75 items-center">
+        <div class="card-body">
+            <h5 class="card-title">GetMapping link + id structure @RequestParam </h5>
+            <p class="card-text" th:text="${product3_id}"></p>
+            <a href="#" class="btn btn-primary">//</a>
+        </div>
+    </div>
+
+
+    <!-- ends codes -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
