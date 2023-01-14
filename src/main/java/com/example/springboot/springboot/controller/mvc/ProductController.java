@@ -88,10 +88,10 @@ public class ProductController implements IProduct {
     }
 
 
-    //http:localhost:8080/product/update
+    //http:localhost:8080/product/update/id
     @GetMapping("update/{id}")
     @Override
-    public String updateGet(@PathVariable("id") Long id,Model model) {
+    public String updateGet(@PathVariable("id") Long id, Model model) {
         Optional<ProductEntity> findEntity = iProductRepository.findById(id);
         if (findEntity.isPresent()) {
             model.addAttribute("product_key_update", findEntity.get());
@@ -108,7 +108,7 @@ public class ProductController implements IProduct {
     public String updatePost(@Valid @ModelAttribute("product_key_update") ProductDto productDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.error(bindingResult.hasErrors());
-            return "product_create";
+            return "product_update";
         }
         ProductEntity ref_productEntity = modelMapperBean.modelMapperMethod().map(productDto, ProductEntity.class);
         iProductRepository.save(ref_productEntity);
