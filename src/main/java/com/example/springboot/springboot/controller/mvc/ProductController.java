@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 
@@ -57,6 +55,20 @@ public class ProductController implements IProduct{
     public String getAllDataList(Model model){
         List<ProductEntity> productEntityList = iProductRepository.findAll();
         model.addAttribute("product_key_list",productEntityList);
+        return "product_list";
+    }
+
+    //http:localhost:8080/product/find/id
+    @GetMapping("find/{id}")
+    @Override
+    public String getFindList(@PathVariable("id") Long id, Model model){
+        Optional<ProductEntity> findEntity = iProductRepository.findById(id);
+        if (findEntity.isPresent()){
+            model.addAttribute("product_key_find",findEntity.get());
+            return "product_detail";
+        }else {
+            model.addAttribute("product_key_find", id + " numaralı ID'ye ait veri bulunamadı!");
+        }
         return "product_list";
     }
 }
