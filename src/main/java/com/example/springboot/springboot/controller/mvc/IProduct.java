@@ -2,6 +2,7 @@ package com.example.springboot.springboot.controller.mvc;
 
 import com.example.springboot.springboot.business.dto.ProductDto;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +18,9 @@ public interface IProduct {
     String createPost(ProductDto productDto, BindingResult bindingResult, Model model);
     String getAllDataList(Model model);
     String getFindList(Long id, Model model);
-
-    @GetMapping("delete/{id}")
-    String getDelete(@PathVariable("id") Long id, Model model);
-
-
+    String getDelete(Long id, Model model);
+    String updateGet(Long id, Model model);
+    String updatePost(ProductDto productDto, BindingResult bindingResult, Model model);
     /*//crud
     public ProductDto speedCreateProduct();
 

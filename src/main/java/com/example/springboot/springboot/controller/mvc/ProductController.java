@@ -86,4 +86,32 @@ public class ProductController implements IProduct {
         }
         return "product_list";
     }
+
+
+    //http:localhost:8080/product/update
+    @GetMapping("update/{id}")
+    @Override
+    public String updateGet(@PathVariable("id") Long id,Model model) {
+        Optional<ProductEntity> findEntity = iProductRepository.findById(id);
+        if (findEntity.isPresent()) {
+            model.addAttribute("product_key_update", findEntity.get());
+            return "product_update";
+        } else {
+            model.addAttribute("product_key_update", id + " numaralı ID'ye ait veri bulunamadı!");
+        }
+        return "redirect:/product_list";
+    }
+
+    @PostMapping("update")
+    @Override
+    @Transactional //data security
+    public String updatePost(@Valid @ModelAttribute("product_key_update") ProductDto productDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            log.error(bindingResult.hasErrors());
+            return "product_create";
+        }
+        ProductEntity ref_productEntity = modelMapperBean.modelMapperMethod().map(productDto, ProductEntity.class);
+        iProductRepository.save(ref_productEntity);
+        return "redirect:/product_list";
+    }
 }
