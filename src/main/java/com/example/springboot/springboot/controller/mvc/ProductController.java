@@ -20,27 +20,29 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("product")
-public class ProductController implements IProduct{
+public class ProductController implements IProduct {
 
     private IProductRepository iProductRepository;
     private ModelMapperBean modelMapperBean;
+
     @Autowired
     public ProductController(IProductRepository iProductRepository) {
         this.iProductRepository = iProductRepository;
     }
+
     //http:localhost:8080/product/create
     @GetMapping("create")
     @Override
-    public String createGet(Model model){
-        model.addAttribute("product_create",new ProductDto());
+    public String createGet(Model model) {
+        model.addAttribute("product_create", new ProductDto());
         return "product_list";
     }
 
-    @PostMapping ("create")
+    @PostMapping("create")
     @Override
     @Transactional //data security
-    public String createPost(@Valid @ModelAttribute("product_create") ProductDto productDto, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
+    public String createPost(@Valid @ModelAttribute("product_create") ProductDto productDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             log.error(bindingResult.hasErrors());
             return "product_create";
         }
@@ -52,22 +54,35 @@ public class ProductController implements IProduct{
     //http:localhost:8080/product/list
     @GetMapping("list")
     @Override
-    public String getAllDataList(Model model){
+    public String getAllDataList(Model model) {
         List<ProductEntity> productEntityList = iProductRepository.findAll();
-        model.addAttribute("product_key_list",productEntityList);
+        model.addAttribute("product_key_list", productEntityList);
         return "product_list";
     }
 
     //http:localhost:8080/product/find/id
     @GetMapping("find/{id}")
     @Override
-    public String getFindList(@PathVariable("id") Long id, Model model){
+    public String getFindList(@PathVariable("id") Long id, Model model) {
         Optional<ProductEntity> findEntity = iProductRepository.findById(id);
-        if (findEntity.isPresent()){
-            model.addAttribute("product_key_find",findEntity.get());
+        if (findEntity.isPresent()) {
+            model.addAttribute("product_key_find", findEntity.get());
             return "product_detail";
-        }else {
+        } else {
             model.addAttribute("product_key_find", id + " numaralı ID'ye ait veri bulunamadı!");
+        }
+        return "redirect:/product_list";
+    }
+    //http:localhost:8080/product/delete/id
+    @GetMapping("delete/{id}")
+    @Override
+    public String getDelete(@PathVariable("id") Long id, Model model) {
+        Optional<ProductEntity> findEntity = iProductRepository.findById(id);
+        if (findEntity.isPresent()) {
+            model.addAttribute("product_key_delete", findEntity.get());
+            iProductRepository.deleteById(id);
+        } else {
+            model.addAttribute("product_key_delete", id + " numaralı ID'ye ait veri bulunamadı!");
         }
         return "product_list";
     }

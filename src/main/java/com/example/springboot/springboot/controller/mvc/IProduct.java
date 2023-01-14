@@ -18,6 +18,9 @@ public interface IProduct {
     String getAllDataList(Model model);
     String getFindList(Long id, Model model);
 
+    @GetMapping("delete/{id}")
+    String getDelete(@PathVariable("id") Long id, Model model);
+
 
     /*//crud
     public ProductDto speedCreateProduct();
