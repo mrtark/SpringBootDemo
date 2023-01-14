@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Log4j2
 
 @Controller
@@ -47,5 +49,14 @@ public class ProductController implements IProduct{
         ProductEntity ref_productEntity = modelMapperBean.modelMapperMethod().map(productDto, ProductEntity.class);
         iProductRepository.save(ref_productEntity);
         return "redirect:/product_list";
+    }
+
+    //http:localhost:8080/product/list
+    @GetMapping("list")
+    @Override
+    public String getAllDataList(Model model){
+        List<ProductEntity> productEntityList = iProductRepository.findAll();
+        model.addAttribute("product_key_list",productEntityList);
+        return "product_list";
     }
 }
